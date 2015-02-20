@@ -13,7 +13,7 @@ bl_info = {
     "location": "Render Tab > Easy Light Map",
     "description": "Bakes light map for selected object easily!",
     "warning": "",
-    "wiki_url": "",
+    "wiki_url": "https://github.com/mese79/easy_lightmap",
     "category": "Render"
 }
 
