@@ -63,7 +63,7 @@ class EasyLightMap(bpy.types.Operator):
         img_path = bpy.path.abspath(self.settings.bake_path)
         if not img_path:
             img_path = bpy.path.abspath("//")
-        img_path = os.path.join(self.settings.bake_path, name + ".png")
+        img_path = os.path.join(img_path, name + ".png")
         
         img = bpy.data.images.get(name)
         if img is None:
