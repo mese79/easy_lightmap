@@ -103,6 +103,12 @@ class EasyLightMap(bpy.types.Operator):
         for index in range(len(self.textures_use)):
             if self.material.texture_slots[index] is not None:
                 self.material.texture_slots[index].use = self.textures_use.pop(0)
+
+        # Use new baked texture
+        img.reload()
+        baked_slot.use = True
+        baked_slot.blend_type = "MULTIPLY"
+
         # Done!
         return {"FINISHED"}
 
