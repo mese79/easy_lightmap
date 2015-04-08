@@ -124,10 +124,10 @@ class EasyLightMap(bpy.types.Operator):
     def check_uv_layers(self):
         """ Object must have two uv sets. """
         if len(self.selected_object.data.uv_textures) == 0:
-            self.add_uv_map("diffuse")
-            self.add_uv_map("lightmap")
+            self.add_uv_map("Diffuse")
+            self.add_uv_map("LightMap")
         elif len(self.selected_object.data.uv_textures) == 1:
-            self.add_uv_map("lightmap")
+            self.add_uv_map("LightMap")
 
     def add_uv_map(self, name):
         """ Add new UV Map to object and unwrap it. """
@@ -135,15 +135,15 @@ class EasyLightMap(bpy.types.Operator):
         uv.active = True
         bpy.ops.object.mode_set(mode="EDIT")
         bpy.ops.mesh.select_all(action="SELECT")
-        # bpy.ops.uv.smart_project(island_margin=0.05)
+        bpy.ops.uv.smart_project(island_margin=0.05)
         # Have to pass object, because context.object is None in render panel.
         # (in unwrap function is_editmode = (context.object.mode == 'EDIT') will need it.)
-        bpy.ops.uv.lightmap_pack({
-                                  "object": self.selected_object,
-                                  "PREF_CONTEXT": "ALL_OBJECTS",
-                                  "PREF_PACK_IN_ONE": True,
-                                  "PREF_IMG_PX_SIZE": self.settings.image_w
-                                 })
+        #bpy.ops.uv.lightmap_pack({
+        #                          "object": self.selected_object,
+        #                          "PREF_CONTEXT": "ALL_OBJECTS",
+        #                          "PREF_PACK_IN_ONE": True,
+        #                          "PREF_IMG_PX_SIZE": self.settings.image_w
+        #                         })
         bpy.ops.object.mode_set(mode="OBJECT")
         uv.active = True
 
